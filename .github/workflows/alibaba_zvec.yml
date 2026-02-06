@@ -42,5 +42,5 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name:  incus-src
+          name:  dist
           path: ${{github.workspace}}/zvec-latest.tar.gz
