@@ -1,0 +1,46 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ZVEC
+
+# Controls when the workflow will run
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - name: Configure git
+        run: |
+          git config --global user.email "slackman@disroot.org"
+          git config --global user.name "slackman"
+          git config --global core.autocrlf false
+
+      - name: Fetch code
+        run: |
+          mkdir build
+          git clone --recurse-submodules https://github.com/alibaba/zvec.git
+          #wget https://github.com/boostorg/boost/releases/download/boost-1.88.0/boost-1.88.0-cmake.tar.gz
+
+      - name: Package code
+        run: tar -czvf ${{github.workspace}}/zvec-latest.tar.gz  build/
+          
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name:  incus-src
+          path: ${{github.workspace}}/zvec-latest.tar.gz
