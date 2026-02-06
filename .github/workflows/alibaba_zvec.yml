@@ -33,7 +33,7 @@ jobs:
       - name: Fetch code
         run: |
           mkdir build
-          git clone --recurse-submodules https://github.com/alibaba/zvec.git
+          git clone --recurse-submodules https://github.com/alibaba/zvec.git build/zvec-latest
           #wget https://github.com/boostorg/boost/releases/download/boost-1.88.0/boost-1.88.0-cmake.tar.gz
 
       - name: Package code
@@ -42,5 +42,5 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name:  dist
+          name:  zvec-latest
           path: ${{github.workspace}}/zvec-latest.tar.gz
