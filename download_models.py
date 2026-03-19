@@ -5,7 +5,7 @@ from transformers import T5ForConditionalGeneration, T5Tokenizer
 model_name = "utrobinmv/t5_translate_en_ru_zh_small_1024"
 MODEL_PATH = "./models"
 
-os.mkdir(MODEL_PATH, exist_ok=True)
+os.makedirs(MODEL_PATH, exist_ok=True)
 
 # 下载模型和分词器并保存到本地
 model = T5ForConditionalGeneration.from_pretrained(model_name)
