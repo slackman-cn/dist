@@ -42,7 +42,7 @@ jobs:
         run: source venv/bin/activate
 
       - name: Install dependencies
-        run: pip install torch transformers tiktoken sentencepiece tokenizers datasets
+        run: pip install torch transformers tiktoken sentencepiece protobuf tokenizers datasets
 
       - name: Download models
         run: python download_models.py
