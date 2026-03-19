@@ -1,2 +1,0 @@
-# dist
-Git repo  dist
